@@ -1,0 +1,12 @@
+D:\Source\TestExistekCrud\AspNetCore\BackCrud\DataAccesLayer\bin\Debug\netcoreapp3.1\DataAccesLayer.deps.json
+D:\Source\TestExistekCrud\AspNetCore\BackCrud\DataAccesLayer\bin\Debug\netcoreapp3.1\DataAccesLayer.dll
+D:\Source\TestExistekCrud\AspNetCore\BackCrud\DataAccesLayer\obj\Debug\netcoreapp3.1\DataAccesLayer.AssemblyInfoInputs.cache
+D:\Source\TestExistekCrud\AspNetCore\BackCrud\DataAccesLayer\obj\Debug\netcoreapp3.1\DataAccesLayer.AssemblyInfo.cs
+D:\Source\TestExistekCrud\AspNetCore\BackCrud\DataAccesLayer\obj\Debug\netcoreapp3.1\DataAccesLayer.csprojAssemblyReference.cache
+D:\Source\TestExistekCrud\AspNetCore\BackCrud\DataAccesLayer\obj\Debug\netcoreapp3.1\DataAccesLayer.csproj.CoreCompileInputs.cache
+D:\Source\TestExistekCrud\AspNetCore\BackCrud\DataAccesLayer\bin\Debug\netcoreapp3.1\DataAccesLayer.runtimeconfig.json
+D:\Source\TestExistekCrud\AspNetCore\BackCrud\DataAccesLayer\bin\Debug\netcoreapp3.1\DataAccesLayer.runtimeconfig.dev.json
+D:\Source\TestExistekCrud\AspNetCore\BackCrud\DataAccesLayer\bin\Debug\netcoreapp3.1\DataAccesLayer.pdb
+D:\Source\TestExistekCrud\AspNetCore\BackCrud\DataAccesLayer\obj\Debug\netcoreapp3.1\DataAccesLayer.dll
+D:\Source\TestExistekCrud\AspNetCore\BackCrud\DataAccesLayer\obj\Debug\netcoreapp3.1\DataAccesLayer.pdb
+D:\Source\TestExistekCrud\AspNetCore\BackCrud\DataAccesLayer\obj\Debug\netcoreapp3.1\DataAccesLayer.genruntimeconfig.cache
