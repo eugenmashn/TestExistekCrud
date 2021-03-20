@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccessLayer.Models;
+using DataAccessLayer.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,8 @@ namespace BackCrud
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<PostsContext>(options => options.UseSqlServer(connection));
+            services.AddTransient(typeof(IEFGenericRepository<>), typeof(EFGenericRepository<>));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -60,7 +63,10 @@ namespace BackCrud
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+
             });
+            
         }
     }
 }

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BackCrud.Models;
+using DataAccesLayer.Services;
+using DataAccessLayer.Models;
+using DataAccessLayer.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -10,29 +14,79 @@ namespace BackCrud.Controllers
     [ApiController]
     public class PostsController : ApiController
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
 
-        private readonly ILogger<PostsController> _logger;
-
-        public PostsController(ILogger<PostsController> logger)
+        IEFGenericRepository<Post> EFRepositoryPost;
+        public PostsController(IEFGenericRepository<Post> eFRepositoryPost)
         {
-            _logger = logger;
+            EFRepositoryPost = eFRepositoryPost;
+        }
+        [HttpPost]
+        [Route(nameof(CreatePost))]
+        public async Task<ActionResult<Author>> CreatePost(PostRequired post)
+        {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            return Ok(await EFRepositoryPost.Create(new Post()
+            {
+               Title = post.Tiltle,
+               ImgUrl = post.ImgUrl,
+               AuthorId = post.AuthorId,
+               Description = post.Description,
+               DateCreated = post.DateCreated
+            }));
+        }
+        [HttpGet]
+        [Route(nameof(GetPosts))]
+        public async Task<ActionResult<IList<Author>>> GetPosts(ParametersFilterSortPage parametersFilterSortPage)
+        {
+
+            ServicesDataPost servicesDataPost = new ServicesDataPost(EFRepositoryPost);
+            return Ok(await servicesDataPost.GetDataFilteringSortingPaging(parametersFilterSortPage.Filter, parametersFilterSortPage.Sort, parametersFilterSortPage.Page, parametersFilterSortPage.NumberItem));
         }
 
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpPut]
+        [Route(nameof(UpdatePost))]
+        public async Task<ActionResult<Author>> UpdatePost(PostRequired post)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            return Ok(await EFRepositoryPost.Update(new Post()
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+                PostId = post.PostId,
+                Title = post.Tiltle,
+                ImgUrl = post.ImgUrl,
+                AuthorId = post.AuthorId,
+                Description = post.Description,
+                DateCreated = post.DateCreated
+            }));
+        }
+
+
+        [HttpDelete]
+        [Route(nameof(DeletePost) + "/{postId}")]
+        public ActionResult DeletePost(Guid postId)
+        {
+            try
+            {
+                var post = EFRepositoryPost.FindById(postId);
+                EFRepositoryPost.Remove(post);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        
+        [HttpGet]
+        [Route(nameof(GetPostById) + "/{postId}")]
+        public ActionResult GetPostById(Guid postId)
+        {
+            var post =  EFRepositoryPost.FindById(postId);
+            return Ok(post);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace DataAccessLayer.Models
         public Guid PostId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public DateTime DateCreated { get; set; }
         public string ImgUrl { get; set; }
         public Guid? AuthorId { get; set; }
         public Author Author { get; set; }

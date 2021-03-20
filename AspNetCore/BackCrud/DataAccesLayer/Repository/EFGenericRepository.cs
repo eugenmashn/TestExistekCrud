@@ -19,7 +19,7 @@ namespace DataAccessLayer.Repository
             _context = context;
             _dbSet = context.Set<TEntity>();
         }
-        public IEnumerable<TEntity> Get()
+        public IQueryable<TEntity> Get()
         {
             return _dbSet;
         }
@@ -46,16 +46,17 @@ namespace DataAccessLayer.Repository
             return item;
         }
 
-        public void Create(TEntity item)
+        public async Task<TEntity> Create(TEntity item)
         {
-            _dbSet.Add(item);
-
-            _context.SaveChanges();
+             _dbSet.Add(item);
+            await _context.SaveChangesAsync();
+            return (item);
         }
-        public void Update(TEntity item)
+        public async Task<TEntity> Update(TEntity item)
         {
-            _context.Entry(item).State = _context.Entry(item).State;
-            _context.SaveChanges();
+            _context.Update(item);
+            await _context.SaveChangesAsync();
+            return item;
         }
 
         public void Remove(TEntity item)
@@ -74,7 +75,7 @@ namespace DataAccessLayer.Repository
          {
              return await _dbSet.FirstOrDefaultAsync(predicate);
          }*/
-        public IQueryable<TEntity> IncludeGet(Expression<Func<TEntity, object>> includes)
+        public  IQueryable<TEntity> IncludeGet(Expression<Func<TEntity, object>> includes)
         {
 
 

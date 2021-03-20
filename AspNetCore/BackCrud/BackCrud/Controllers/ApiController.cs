@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BackCrud.Controllers
 {
     [ApiController]
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     public class ApiController : ControllerBase
     {
         

@@ -8,11 +8,11 @@ namespace DataAccessLayer.Repository
 {
     public interface IEFGenericRepository<TEntity> where TEntity : class
     {
-        void Create(TEntity item);
+        Task<TEntity> Create(TEntity item);
 
         TEntity FindById(Guid id);
         TEntity FindById(Func<TEntity, bool> predicate);
-        IEnumerable<TEntity> Get();
+        IQueryable<TEntity> Get();
         IQueryable<TEntity> Get(Func<TEntity, bool> predicate);
         void Remove(TEntity item);
         int Count(Func<TEntity, bool> predicate);
@@ -20,7 +20,7 @@ namespace DataAccessLayer.Repository
         Task<TEntity> FindAsyncMethod(Expression<Func<TEntity, bool>> predicate);
         Task AddAsyn(TEntity item);
         IQueryable<TEntity> GetSort(Func<TEntity, string> predicate);
-        void Update(TEntity item);
+        Task<TEntity> Update(TEntity item);
         IQueryable<TEntity> IncludeGet(Expression<Func<TEntity, object>> includes);
     }
 }
