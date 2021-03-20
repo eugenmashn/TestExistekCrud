@@ -36,7 +36,7 @@ namespace BackCrud.Controllers
                DateCreated = post.DateCreated
             }));
         }
-        [HttpGet]
+        [HttpPost]
         [Route(nameof(GetPosts))]
         public async Task<ActionResult<IList<Author>>> GetPosts(ParametersFilterSortPage parametersFilterSortPage)
         {
@@ -85,8 +85,10 @@ namespace BackCrud.Controllers
         [Route(nameof(GetPostById) + "/{postId}")]
         public ActionResult GetPostById(Guid postId)
         {
-            var post =  EFRepositoryPost.FindById(postId);
-            return Ok(post);
+            var post =  EFRepositoryPost.IncludeGet(i =>i.Author).FirstOrDefault( i=>i.PostId == postId);
+            if(post != null)
+                return Ok(post);
+            return BadRequest();
         }
     }
 }

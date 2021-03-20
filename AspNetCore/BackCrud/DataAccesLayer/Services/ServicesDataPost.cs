@@ -21,7 +21,7 @@ namespace DataAccesLayer.Services
 
         public async Task<List<Post>> GetDataFilteringSortingPaging(List<Filter> filters, Sort sort, int page = 1, int number = 10)
         {
-            IQueryable<Post> result = EFRepositoryPost.Get();
+            IQueryable<Post> result = EFRepositoryPost.IncludeGet(i => i.Author);
             if (filters != null)
             {
                 foreach (var filter in filters)

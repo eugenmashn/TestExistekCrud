@@ -31,8 +31,12 @@ namespace BackCrud
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<PostsContext>(options => options.UseSqlServer(connection));
             services.AddTransient(typeof(IEFGenericRepository<>), typeof(EFGenericRepository<>));
-
+            services.AddControllersWithViews()
+                   .AddNewtonsoftJson(options =>
+                   options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc(name: "v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Posts Api", Version = "v1" });
@@ -55,9 +59,12 @@ namespace BackCrud
             });
 
             app.UseHttpsRedirection();
-
+           
             app.UseRouting();
-
+            app.UseCors(builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

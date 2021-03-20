@@ -1,0 +1,25 @@
+
+.App{
+  display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+html, body, #root, .App {
+  height: 100%;
+  margin: 0 auto;
+}
+
+.Header{
+  flex-wrap: wrap;
+  min-height: 70px;
+}
+.Main{
+   flex: 1 0 auto;
+   flex-wrap: wrap;
+}
+.Footer{
+  flex-wrap: wrap;
+  min-height: 70px;
+  background-color: rgb(204, 204, 204);
+}
+
