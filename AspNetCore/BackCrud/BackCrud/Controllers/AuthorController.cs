@@ -30,12 +30,12 @@ namespace BackCrud.Controllers
             {
                 Address = author.Address,
                 Email = author.Email,
-                BirtDay = author.BirtDay,
+                BirtDay = Convert.ToDateTime(author.BirtDay),
                 FullName = author.FullName,
                 Age = author.Age
             }));
         }
-        [HttpGet]
+        [HttpPost]
         [Route(nameof(GetAuthors))]
         public async Task<ActionResult<IList<Author>>> GetAuthors(ParametersFilterSortPage parametersFilterSortPage)
         {
@@ -55,7 +55,7 @@ namespace BackCrud.Controllers
                 AuthorId = author.AuthorId,
                 Address = author.Address,
                 Email = author.Email,
-                BirtDay = author.BirtDay,
+                BirtDay = Convert.ToDateTime(author.BirtDay),
                 FullName = author.FullName,
                 Age = author.Age
             })));

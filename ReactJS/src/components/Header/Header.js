@@ -15,8 +15,11 @@ function Header() {
       <div className='container-icon'>
           <Image as={Link} to='/'  src={mainlogo}  circular />
       </div>
+      
       <div className='container-auth'>
-          
+      <div className='container-link'>
+          <Link to="/authors"  >Сторінка авторів</Link>
+      </div> 
         <div className = 'container-add-template'>
           <Button  as={Link} to="/addPosts"  className = 'button-add-temolate'>Додати пост</Button>
         </div>

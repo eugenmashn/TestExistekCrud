@@ -9,26 +9,18 @@ import { GetPost,EditPost } from '../../services/post_services';
 function UpdatePost(props) {
   const dispatch = useDispatch();
   let id = props.match.params.id;
-  let post = props.posts.find(i => i._id===id); 
   useEffect(() => {
     dispatch(GetPost(id));
     });
+    debugger;
+  let post = props.posts.find(i => i.postId===id); 
+  
   const SubmitPostFormUpdate = function(modalPost) {
-      if(modalPost.Name !== ''){
-          dispatch(EditPost(modalPost))
-      }
-      else{
-          console.log('error');
-      }
-          
+        dispatch(EditPost(modalPost))  
     }
     return <PostForm Post={post} SubmitPostForm = {SubmitPostFormUpdate}/>
 }
-let mapDispatchToProps=(dispatch)=>{
-    return {
-      
-  }
-};
+
 
 let mapStateToProps=(state)=>{
   return{
@@ -41,5 +33,5 @@ let mapStateToProps=(state)=>{
 
 
 
-const EditPostComp = connect(mapStateToProps,mapDispatchToProps) (UpdatePost);
+const EditPostComp = connect(mapStateToProps,null) (UpdatePost);
 export default EditPostComp;

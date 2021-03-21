@@ -28,7 +28,6 @@ const ViewPost = function (props) {
         
         dispatch(DeletePost(post));
     }
-    
     return (
         <div className="view-post">
             <Card key = {post.postId} fluid centered className='card-view-element' >
@@ -50,7 +49,7 @@ const ViewPost = function (props) {
                     </div>
                     <div className='button-group-post-view'>
                         <Button  as={Link} to={"/"} secondary className = 'button-change-post' onClick={removePost}>Видалити</Button>
-                        <Button  as={Link} to={`/changePost/${props.postId}`} secondary className = 'button-change-post'>Змінити</Button>
+                        <Button  as={Link} to={`/changePost/${post.postId}`} secondary className = 'button-change-post'>Змінити</Button>
                      </div>
                     </Card.Content>
             </Card>

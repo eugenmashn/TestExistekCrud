@@ -19,7 +19,7 @@ function Posts() {
   const posts = useSelector(state => state.posts.posts);
   const loading = useSelector(state => state.posts.loading);
   const onchangePage =(e, {activePage})=>{
-    dispatch(set_Page(activePage-1));
+    dispatch(set_Page(activePage));
   }
   if(loading === false)
       return<div>loading...</div>
@@ -45,7 +45,7 @@ function Posts() {
           )
       }
           </Card.Group>
-          <div className='post-paging'> <Pagination  defaultActivePage={1}  totalPages={10} onPageChange = {onchangePage} /></div>
+          <div className='post-paging'> <Pagination  defaultActivePage={1}  totalPages={100}  onPageChange = {onchangePage} /></div>
     </div>
   );
 }

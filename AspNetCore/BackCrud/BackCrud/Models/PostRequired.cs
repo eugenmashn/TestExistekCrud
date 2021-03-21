@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace BackCrud.Models
     {
         public Guid PostId { get; set; }
         [Required(ErrorMessage = "Не вказано назву")]
-        public string Tiltle { get; set; }
+        public string Title { get; set; }
         [Required(ErrorMessage = "Не вказано опис")]
         public string Description { get; set; }
         public string ImgUrl { get; set; }

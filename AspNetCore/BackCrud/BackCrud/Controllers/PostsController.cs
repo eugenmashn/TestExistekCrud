@@ -29,11 +29,11 @@ namespace BackCrud.Controllers
                 return BadRequest(ModelState);
             return Ok(await EFRepositoryPost.Create(new Post()
             {
-               Title = post.Tiltle,
+               Title = post.Title,
                ImgUrl = post.ImgUrl,
                AuthorId = post.AuthorId,
                Description = post.Description,
-               DateCreated = post.DateCreated
+               DateCreated = DateTime.Now
             }));
         }
         [HttpPost]
@@ -55,7 +55,7 @@ namespace BackCrud.Controllers
             return Ok(await EFRepositoryPost.Update(new Post()
             {
                 PostId = post.PostId,
-                Title = post.Tiltle,
+                Title = post.Title,
                 ImgUrl = post.ImgUrl,
                 AuthorId = post.AuthorId,
                 Description = post.Description,

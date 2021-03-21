@@ -71,13 +71,13 @@ export const DeletePost = (post) => async (dispatch) =>
     try {
 
         const requestOptions = {
-            method: 'DeLETE',
+            method: 'DELETE',
             mode:'cors',
             headers: { 
                 "Content-type": "application/json; charset=UTF-8"
             }
         };
-       fetch(urlApi+'/post/removePost/' + post._id, requestOptions)
+       fetch(urlApi+'/Posts/DeletePost/{' + post.postId + '}', requestOptions)
             .then(res => res.json())
             .then(data => {
             })
@@ -88,16 +88,13 @@ export const DeletePost = (post) => async (dispatch) =>
         console.log('Error!');
     }
 }
-export const NewPost =(post,author) => async (dispatch) =>
+export const NewPost =(post) => async (dispatch) =>
 {
     try {
         debugger;
-        post.author= author;
-        post._id  = null;
-        post.location ={};
-        post.viewersCount = 0;
+    
         const requestOptions = {
-            method: 'PUT',
+            method: 'POST',
             mode:'cors',
             headers: { 
                 "Content-type": "application/json; charset=UTF-8"
@@ -105,7 +102,7 @@ export const NewPost =(post,author) => async (dispatch) =>
             body: JSON.stringify({...post})
         };
         debugger;
-        fetch(urlApi+'/post/createPost', requestOptions)
+        fetch(urlApi+'/Posts/CreatePost', requestOptions)
             .then(res => res.json())
             .then(data => {
                 const res = {data};
@@ -126,10 +123,9 @@ export const EditPost = (post)=>async (dispatch) =>
 {
     try {
         try {
-            post.author="tesast@mail.com";
-            post.location ={};
+            
             const requestOptions = {
-                method: 'patch',
+                method: 'Put',
                 mode:'cors',
                 headers: { 
                     "Content-type": "application/json; charset=UTF-8",
@@ -139,7 +135,7 @@ export const EditPost = (post)=>async (dispatch) =>
                 })
             };
             
-            fetch(urlApi+'/post/updatePost', requestOptions)
+            fetch(urlApi+'/Posts/UpdatePost', requestOptions)
                 .then(res => res.json())
                 .then(data => {
                     const res = {data};

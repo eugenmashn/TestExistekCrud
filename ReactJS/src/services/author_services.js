@@ -1,21 +1,33 @@
-import {setUser,setMessage,setUserPost,setUserLoading,logUserOut} from './../redux/User/userActions'
+import {GetAuthors,setMessage,setAuthorLoading} from './../redux/Author/authorActions'
+import{UpdateAuthors} from '../redux/Author/authorActions'
 import urlApi from './UrlRequest'
 
 export const fetchAuthors = (userInfo) => dispatch => {
+    debugger;
     try {
         const requestOptions = {
             method: 'POST',
             headers: { 
                 "Content-type": "application/json; charset=UTF-8"
             },
-            body: JSON.stringify(userInfo)
+            body: JSON.stringify({
+                filter: [
+                 ],
+                  sort: {
+               
+                },
+                page: 1,
+                numberItem: 100
+                
+              })
         };
-        fetch( urlApi+`/users/login`,requestOptions)
+        fetch( urlApi+`/Author/GetAuthors`,requestOptions)
         .then(res => res.json())
         .then(data => {
             if(!data.error)
-            {
-                dispatch(setUser({...data.user}));
+            {   debugger;
+                dispatch(GetAuthors(data));
+                dispatch(setAuthorLoading(true))
             }
             else{
                 dispatch(setMessage(data.error));
@@ -29,21 +41,59 @@ export const fetchAuthors = (userInfo) => dispatch => {
         console.log('Error!');
     }
 }
-
-export const updateAuthors = (userInfo) => async(dispatch) =>{
+export const fetchAllAuthors = (page) => dispatch => {
+    debugger;
+    try {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 
+                "Content-type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({
+                filter: [
+                 ],
+                  sort: {
+               
+                },
+                page: page,
+                numberItem: 10
+                
+              })
+        };
+        fetch( urlApi+`/Author/GetAuthors`,requestOptions)
+        .then(res => res.json())
+        .then(data => {
+            if(!data.error)
+            {   debugger;
+                dispatch(GetAuthors(data));
+                dispatch(setAuthorLoading(true))
+            }
+            else{
+                dispatch(setMessage(data.error));
+            }
+        })
+        .catch((e)=>{
+            console.log(e);
+        });
+        } catch{
+        
+        console.log('Error!');
+    }
+}
+export const UpdateAuthor = (userInfo) => async(dispatch) =>{
     try{
         const requestOptions = {
-            method: 'PATCH',
+            method: 'PUT',
             headers: { 
                 "Content-type": "application/json; charset=UTF-8"                
             },
-            body: JSON.stringify(userInfo)
+            body: JSON.stringify({...userInfo})
         };
         debugger;
-        fetch( urlApi+'/users/update',requestOptions)
+        fetch( urlApi+'/Author/UpdateAuthor',requestOptions)
         .then(res => res.json())
         .then(data => {
-            dispatch(setUser(data));
+            dispatch(UpdateAuthors({...data}));
         })
 
     } catch{
@@ -51,20 +101,21 @@ export const updateAuthors = (userInfo) => async(dispatch) =>{
     }
 }
 
-export const CreateAuthor = () => async(dispatch) => {
+export const CreateAuthor = (author) => async(dispatch) => {
+    debugger;
     try {
+        author.age = parseInt(author.age)
         const requestOptions = {
-            method: 'GET',
+            method: 'POST',
             headers: { 
                 "Content-type": "application/json; charset=UTF-8",
             },
+            body: JSON.stringify({...author})
         };
         debugger;
-        fetch( urlApi+'/users/me/logout',requestOptions)
+        fetch( urlApi+'/Author/CreateAuthor',requestOptions)
         .then(res => res.json())
-        .then(data => {
-            debugger;
-            dispatch(logUserOut());
+        .then(data => {           
         })
         .catch((e)=>{
             console.log(e);
@@ -100,14 +151,14 @@ export const RemoveAuthor =  (page,author) => async (dispatch)=>{
         fetch(urlApi+'/post/filterPosts', requestOptions)
             .then(res => res.json())
             .then(data => {
-                dispatch(setUserPost(data));
-                dispatch(setUserLoading(true));
+              
+                dispatch(setAuthorLoading(true));
             })
             .catch((e)=>{
                 console.log(e);
             });
         } catch{
-            dispatch(setUserLoading(false));
+            dispatch(setAuthorLoading(false));
             console.log('Error!');
         }
 }

@@ -31,12 +31,17 @@ namespace BackCrud
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<PostsContext>(options => options.UseSqlServer(connection));
             services.AddTransient(typeof(IEFGenericRepository<>), typeof(EFGenericRepository<>));
+            services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>
+            {
+                builder.WithOrigins("http://localhost:3100").AllowAnyMethod().AllowAnyHeader();
+            }));
+
             services.AddControllersWithViews()
                    .AddNewtonsoftJson(options =>
                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                 );
             services.AddControllers();
-            services.AddCors();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc(name: "v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Posts Api", Version = "v1" });

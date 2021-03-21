@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter } from'react-router-dom'
 import 'semantic-ui-css/semantic.min.css'
 import history from './history';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>

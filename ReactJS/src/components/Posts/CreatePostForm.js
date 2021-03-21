@@ -7,11 +7,12 @@ import{NewPost} from '../../services/post_services'
 
 const CreatePost = function (props)
 {
-  const author =  useSelector(state => state.user.user.email);
+  
   const dispatch = useDispatch();
   const  SubmitPostFormCreate = (modalPost)=> {
+    debugger;
     if(modalPost.Name !== ''){
-     dispatch(NewPost(modalPost,author));
+     dispatch(NewPost(modalPost));
     }
     else{
       console.log('error');

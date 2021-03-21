@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace BackCrud.Models
         [Required(ErrorMessage = "Не вказано адреси")]
         public string Address { get; set; }
         [Required(ErrorMessage = "Не вказано дати народження")]
-        public DateTime BirtDay { get; set; }
+        public string BirtDay { get; set; }
         [Range(1, 110, ErrorMessage = "Вік має бути від 1 до 110")]
         public int Age { get; set; }
     }
