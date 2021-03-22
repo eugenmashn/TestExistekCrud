@@ -1,8 +1,10 @@
-import { SET_POST, DELETE_POST, NEW_POST, EDIT_POST, SET_LOADING, SET_PAGING } from './typesPost';
+import { SET_POST, DELETE_POST, NEW_POST, EDIT_POST,SET_AUTHOR_FILTER,SET_TITLE_FILTER, SET_LOADING, SET_PAGING } from './typesPost';
 
 const initialState = {
     posts: [],
     loading: false,
+    title:'',
+    authorId:'',
     page: 1
 }
 export default function postsReducer(state = initialState, action) {
@@ -25,6 +27,10 @@ export default function postsReducer(state = initialState, action) {
             return { ...state, loading: action.payload }
         case SET_PAGING:
             return { ...state, page: action.payload}
+        case SET_AUTHOR_FILTER:
+            return { ...state, authorId: action.payload}
+        case SET_TITLE_FILTER:
+            return { ...state, title: action.payload}
         case EDIT_POST:
             let posts = state.posts.map(post => {
                 debugger;

@@ -1,5 +1,5 @@
 import {GetAuthors,setMessage,setAuthorLoading} from './../redux/Author/authorActions'
-import{UpdateAuthors,DeleteAuthor} from '../redux/Author/authorActions'
+import{UpdateAuthors,DeleteAuthor,CreateAuthors} from '../redux/Author/authorActions'
 import urlApi from './UrlRequest'
 
 export const fetchAuthors = (userInfo) => dispatch => {
@@ -41,7 +41,7 @@ export const fetchAuthors = (userInfo) => dispatch => {
         console.log('Error!');
     }
 }
-export const fetchAllAuthors = (page) => dispatch => {
+export const fetchAllAuthors = (page,ascending) => async dispatch => {
     debugger;
     try {
         const requestOptions = {
@@ -53,7 +53,8 @@ export const fetchAllAuthors = (page) => dispatch => {
                 filter: [
                  ],
                   sort: {
-               
+                    "ProperyName":"FullName",
+                    "Ascending" : ascending
                 },
                 page: page,
                 numberItem: 10
@@ -115,7 +116,8 @@ export const CreateAuthor = (author) => async(dispatch) => {
         debugger;
         fetch( urlApi+'/Author/CreateAuthor',requestOptions)
         .then(res => res.json())
-        .then(data => {           
+        .then(data => {  
+            dispatch(CreateAuthors(data));      
         })
         .catch((e)=>{
             console.log(e);

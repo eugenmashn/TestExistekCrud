@@ -26,9 +26,9 @@ namespace DataAccesLayer.Services
             {
                 foreach (var filter in filters)
                 {
-                    if (filter.PropertyName == "Title")
+                    if (filter.PropertyName == "Title"  && !string.IsNullOrEmpty(filter.value))
                         result = result.Where( i => i.Title.Contains(filter.value));
-                    if (filter.PropertyName == "AuthorId")
+                    if (filter.PropertyName == "AuthorId" && !string.IsNullOrEmpty(filter.value))
                         result = result.Where(i => i.AuthorId == Guid.Parse(filter.value));
                 }
             }

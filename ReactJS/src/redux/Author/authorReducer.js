@@ -1,8 +1,9 @@
-import {GET_AUTHORS,UPDATE_AUTHORS, SET_LOADED_AUTHORS, SET_PAGE_AUTHORS,SET_ERROR_MESSAGE,DELETE_AUTHORS} from './typeAuthor'
+import {GET_AUTHORS,UPDATE_AUTHORS,CHANGE_SORT,CREATE_AUTHORS, SET_LOADED_AUTHORS, SET_PAGE_AUTHORS,SET_ERROR_MESSAGE,DELETE_AUTHORS} from './typeAuthor'
 const defaultState = {
     authors: [],
     loading: false,
     page: 1,
+    ascending:true,
     errorMessage:null
 }
 
@@ -14,7 +15,15 @@ const authorReducer = (state = defaultState, action) => {
                 ...state,
                 authors: [...action.payload]
             }
-     
+        case CHANGE_SORT:
+        {
+            return { ...state,ascending:action.payload}
+        }
+        case CREATE_AUTHORS:
+            return{
+                ...state,
+               authors:[...state.authors,{...action.payload}]
+            }
         case UPDATE_AUTHORS:
             debugger;
             let authorses = [];
@@ -34,6 +43,7 @@ const authorReducer = (state = defaultState, action) => {
             }
         case SET_PAGE_AUTHORS:
             return { ...state, page: action.payload}
+        
         case SET_ERROR_MESSAGE:
             return { ...state, errorMessage: action.payload}
         case SET_LOADED_AUTHORS:

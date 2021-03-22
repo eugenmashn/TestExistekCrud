@@ -41,24 +41,24 @@ import './Author.css'
         let isValid = true;
         let name = null;
         
-        if (!modelAuthor.address) {
+        if (!modelAuthor?.address) {
           isValid = false;
           setErrorValue ("address" , "Будь ласка ведіть адресу");
         }
-        if (!modelAuthor.age) {
+        if (!modelAuthor?.age) {
             isValid = false;
             setErrorValue ("age" , "Будь ласка ведіть вік");
         }         
-        if (!modelAuthor.birtDay) {
+        if (!modelAuthor?.birtDay) {
             isValid = false;
             setErrorValue ("birtDay" , "Будь ласка ведіть дату народження");
         } 
-        if (!modelAuthor.fullName) {
+        if (!modelAuthor?.fullName) {
             isValid = false;
             setErrorValue ("fullName" , "Будь ласка ведіть повне ім'я");
         } 
         var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-        if(!pattern.test(String(modelAuthor.email).toLowerCase()))
+        if(!pattern.test(String(modelAuthor?.email).toLowerCase()))
         {
             isValid = false;
             setErrorValue ("email" , "Будь ласка ведіть коректну пошту");

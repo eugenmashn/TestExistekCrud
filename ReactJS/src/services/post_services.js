@@ -1,9 +1,10 @@
 import { set_Post,edit_Post ,new_Post, set_Loading} from "../redux/Post/actionsPost";
 import urlApi from './UrlRequest'
 
-export const GetPosts =  (page) => async dispatch=>{ 
+export const GetPosts =  (page,authorId,title) => async dispatch=>{ 
 
     try {
+
         const requestOptions = {
             method: 'POST',
             mode:'cors',
@@ -12,7 +13,14 @@ export const GetPosts =  (page) => async dispatch=>{
             },
             body: JSON.stringify({
                 "filter": [
-
+                    {
+                        "PropertyName": "Title",
+                        "value":title
+                    },
+                    {
+                        "PropertyName": "AuthorId",
+                        "value":authorId
+                    }
               ],
               "sort":{
                     },

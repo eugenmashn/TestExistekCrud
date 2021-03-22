@@ -5,37 +5,57 @@ import  'moment/locale/ru';
 import './Author.css'
 import {Link}  from "react-router-dom";
 import CreateAuthorForm from './CreateAuthorForm';
-//import {set_Page} from '../../redux/Post/actionsAuthors';
+import {setPage,ChangeSort} from '../../redux/Author/authorActions';
 import {fetchAllAuthors,RemoveAuthor} from '../../services/author_services'
 import EditAuthorForm from './EditAuthorForm';
+import { Pagination } from 'semantic-ui-react';
 
 function Authors() {
     const dispatch = useDispatch();
     const page = useSelector(state => state.author.page);
     useEffect(() => {
-        dispatch(fetchAllAuthors(page));
+        dispatch(fetchAllAuthors(page,ascending));
     }, []);
     debugger;
     const authors = useSelector(state => state.author.authors);
+    let ascending = useSelector(state => state.author.ascending);
     const loading = useSelector(state => state.author.loading);
     const removeAuthor = (authorId) =>{
         dispatch(RemoveAuthor(authorId));
     }
+    const onchangeSort = (asc) =>{
+        debugger;
+        ascending = asc;
+        dispatch(fetchAllAuthors(page,ascending));
+        dispatch(ChangeSort(asc));
+        
+    }
     const onchangePage =(e, {activePage})=>{
-  //  dispatch(set_Page(activePage));
+        debugger;
+        dispatch(fetchAllAuthors(activePage,ascending));
+        dispatch(setPage(activePage));
   }
   if(loading === false)
       return<div>loading...</div>
   debugger;
   return (
     <div className="authors">
+        <div>
+
+        </div>
     <div className="add-author">
         <CreateAuthorForm/>
     </div>
     <Table celled>
         <Table.Header>
         <Table.Row>
-            <Table.HeaderCell>Прізвище та ім`я</Table.HeaderCell>
+            <Table.HeaderCell>Прізвище та ім`я{ascending?(
+                            <Button icon   className='icon-sort' onClick={()=>onchangeSort(false)}>
+                                <Icon name='sort alphabet down' />
+                            </Button>):(
+                            <Button icon sort alphabet down className='icon-sort' onClick={()=>onchangeSort(true)}>
+                                <Icon name='sort alphabet up' />
+                            </Button>)}</Table.HeaderCell>
             <Table.HeaderCell>Пошта</Table.HeaderCell>
             <Table.HeaderCell>Адреса</Table.HeaderCell>
             <Table.HeaderCell>Дата народження</Table.HeaderCell>
@@ -69,18 +89,7 @@ function Authors() {
         <Table.Footer>
         <Table.Row>
             <Table.HeaderCell colSpan='3'>
-            <Menu floated='right' pagination>
-                <Menu.Item as='a' icon>
-                <Icon name='chevron left' />
-                </Menu.Item>
-                <Menu.Item as='a'>1</Menu.Item>
-                <Menu.Item as='a'>2</Menu.Item>
-                <Menu.Item as='a'>3</Menu.Item>
-                <Menu.Item as='a'>4</Menu.Item>
-                <Menu.Item as='a' icon>
-                <Icon name='chevron right' />
-                </Menu.Item>
-            </Menu>
+                <Pagination  floated='right'  defaultActivePage={1}  totalPages={10}  onPageChange = {onchangePage}/>
             </Table.HeaderCell>
         </Table.Row>
         </Table.Footer>

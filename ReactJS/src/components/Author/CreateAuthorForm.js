@@ -1,16 +1,17 @@
 import React,{useState} from 'react'
 import AuthorForm from './AuthorForm'
-import {useDispatch } from 'react-redux';
+import {useDispatch,useSelector } from 'react-redux';
 import {CreateAuthor} from '../../services/author_services'
 import { Modal } from 'react-bootstrap';
 import {Button} from 'semantic-ui-react'
+import {fetchAllAuthors} from '../../services/author_services'
 
 function CreateAuthorForm() {
     const dispatch = useDispatch();
     const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+    const page = useSelector(state => state.author.page);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     const SubmitAuthorForm = (model) =>{
         debugger;
         dispatch(CreateAuthor(model));

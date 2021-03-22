@@ -1,4 +1,4 @@
-import {SET_POST,DELETE_POST,NEW_POST,EDIT_POST,SET_LOADING, SET_PAGING} from './typesPost';
+import {SET_POST,DELETE_POST,NEW_POST,EDIT_POST,SET_LOADING,SET_AUTHOR_FILTER,SET_TITLE_FILTER, SET_PAGING} from './typesPost';
 
 export function set_Post(posts)
 {
@@ -31,6 +31,8 @@ export function set_Loading (loaded)
         payload: loaded
     }
 }
+export const SetAuthorFilter = (payload) =>({type:SET_AUTHOR_FILTER, payload})
+export const SetTitleFilter = (payload) => ({type:SET_TITLE_FILTER,payload})
 
 export function edit_Post(post) //rewrite for api
 {

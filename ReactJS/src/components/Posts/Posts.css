@@ -133,6 +133,20 @@
     padding: 1.125rem;
     text-align:justify;
 }
+.posts-filter-author{
+    margin: 2%;
+    width: 48%;
+}
+.posts-filter-title{
+    margin: 2%;
+    float: right;
+    width: 48%;
+}
+.posts-filter{
+    display: flex;
+    margin-bottom: 1.05em;
+    width: 87%;
+}
 .description-view-post h4{
     text-align: center;
 }
