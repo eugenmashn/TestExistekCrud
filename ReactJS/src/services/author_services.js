@@ -1,5 +1,5 @@
 import {GetAuthors,setMessage,setAuthorLoading} from './../redux/Author/authorActions'
-import{UpdateAuthors} from '../redux/Author/authorActions'
+import{UpdateAuthors,DeleteAuthor} from '../redux/Author/authorActions'
 import urlApi from './UrlRequest'
 
 export const fetchAuthors = (userInfo) => dispatch => {
@@ -127,32 +127,22 @@ export const CreateAuthor = (author) => async(dispatch) => {
 }
 
 
-export const RemoveAuthor =  (page,author) => async (dispatch)=>{ 
+export const RemoveAuthor =  (authoId) => async (dispatch)=>{ 
     try {
         debugger;
-        if(!author)
-            return;
         const requestOptions = {
-            method: 'POST',
+            method: 'DELETE',
             mode:'cors',
             headers: { 
                 "Content-type": "application/json; charset=UTF-8",
-            },
-            body: JSON.stringify({
-                    match:{
-                        author:author
-                    },
-                    sort:{},
-                    limit: 10,
-                    page: page
-                })
+            }
         };
         debugger;
-        fetch(urlApi+'/post/filterPosts', requestOptions)
+        fetch(urlApi+'/Author/DeleteAuthor/{' + authoId +'}', requestOptions)
             .then(res => res.json())
             .then(data => {
-              
-                dispatch(setAuthorLoading(true));
+                
+                dispatch(DeleteAuthor(data));
             })
             .catch((e)=>{
                 console.log(e);

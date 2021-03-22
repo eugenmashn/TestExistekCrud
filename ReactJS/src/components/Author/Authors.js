@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Icon, Label, Menu, Table,Button } from 'semantic-ui-react';
 import  'moment/locale/ru';
 import './Author.css'
+import {Link}  from "react-router-dom";
 import CreateAuthorForm from './CreateAuthorForm';
 //import {set_Page} from '../../redux/Post/actionsAuthors';
-import {fetchAllAuthors} from '../../services/author_services'
+import {fetchAllAuthors,RemoveAuthor} from '../../services/author_services'
 import EditAuthorForm from './EditAuthorForm';
 
 function Authors() {
@@ -17,6 +18,9 @@ function Authors() {
     debugger;
     const authors = useSelector(state => state.author.authors);
     const loading = useSelector(state => state.author.loading);
+    const removeAuthor = (authorId) =>{
+        dispatch(RemoveAuthor(authorId));
+    }
     const onchangePage =(e, {activePage})=>{
   //  dispatch(set_Page(activePage));
   }
@@ -52,7 +56,7 @@ function Authors() {
                         <Table.Cell>{author.age}</Table.Cell>
                         <Table.Cell>  
                             <EditAuthorForm Author={author} />
-                            <Button icon>
+                            <Button icon as={Link} to={"/authors"} onClick={()=>{removeAuthor(author.authorId)}}>
                                 <Icon name='delete' />
                             </Button>
                         </Table.Cell>

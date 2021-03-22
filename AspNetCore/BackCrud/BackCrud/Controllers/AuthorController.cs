@@ -72,7 +72,7 @@ namespace BackCrud.Controllers
                 if (author == null)
                     return BadRequest();
                 EFRepositoryAuthor.Remove(author);
-                 return Ok( );
+                 return Ok(author);
             }
             catch
             {

@@ -1,4 +1,4 @@
-import {GET_AUTHORS,UPDATE_AUTHORS, SET_LOADED_AUTHORS, SET_PAGE_AUTHORS,SET_ERROR_MESSAGE} from './typeAuthor'
+import {GET_AUTHORS,UPDATE_AUTHORS, SET_LOADED_AUTHORS, SET_PAGE_AUTHORS,SET_ERROR_MESSAGE,DELETE_AUTHORS} from './typeAuthor'
 const defaultState = {
     authors: [],
     loading: false,
@@ -26,6 +26,12 @@ const authorReducer = (state = defaultState, action) => {
                 return author;
             })
          return { ...state, authors: [...authorses] }
+         case DELETE_AUTHORS:
+             debugger;
+            return {
+                ...state, authors: [...state.authors.filter(author =>
+                    author.authorId !== action.payload.authorId)]
+            }
         case SET_PAGE_AUTHORS:
             return { ...state, page: action.payload}
         case SET_ERROR_MESSAGE:

@@ -25,9 +25,9 @@ const ViewPost = function (props) {
       return<div>loading...</div>  
     }
     const removePost = () =>{
-        
         dispatch(DeletePost(post));
     }
+    
     return (
         <div className="view-post">
             <Card key = {post.postId} fluid centered className='card-view-element' >
