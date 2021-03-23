@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {  useDispatch } from 'react-redux';
-import { Container, Header,Divider,Button } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 import Moment from 'react-moment'
 import  'moment/locale/ru';
@@ -14,7 +14,6 @@ const ViewPost = function (props) {
     const dispatch = useDispatch();
    
     let post = props.post.find(i => i.postId === props.id);
-    
     useEffect(() => {
         if(!post) {
             dispatch(GetPost(props.id));
@@ -27,7 +26,6 @@ const ViewPost = function (props) {
     const removePost = () =>{
         dispatch(DeletePost(post));
     }
-    
     return (
         <div className="view-post">
             <Card key = {post.postId} fluid centered className='card-view-element' >
@@ -58,17 +56,12 @@ const ViewPost = function (props) {
     );
 
 }
-
 let mapStateToProps=(state,ownProps)=>{
-    
-    debugger;
     return{
         id:ownProps.match.params.id,
         user :state.user,
         post:state.posts.posts
     }
   };
-  
-
   const viewPost = connect(mapStateToProps,null) (ViewPost);
   export default viewPost;

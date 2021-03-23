@@ -10,15 +10,12 @@ const CreatePost = function (props)
   
   const dispatch = useDispatch();
   const  SubmitPostFormCreate = (modalPost)=> {
-    debugger;
-     dispatch(NewPost(modalPost));
-    
+    dispatch(NewPost(modalPost));
   }
   return <PostForm Post={null} SubmitPostForm = {SubmitPostFormCreate}/>
 }
   let mapDispatchToProps=(dispatch)=>{
     return {
-      
   }
 };
 
@@ -27,12 +24,5 @@ let mapStateToProps=(state)=>{
         posts:state.posts,
     }
 };
-
-
-
-
-
-
-
 const CreatePostForm = connect(mapStateToProps,mapDispatchToProps) (CreatePost);
 export default CreatePostForm;

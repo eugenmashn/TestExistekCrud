@@ -1,7 +1,6 @@
 import React, { useState , useEffect } from 'react';
 import './Posts.css';
 import {Button,Form,} from 'semantic-ui-react'
-import {Link, Redirect}  from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import {fetchAuthors} from '../../services/author_services'
 import { useHistory } from "react-router-dom";

@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import './Posts.css';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,8 +9,6 @@ import  'moment/locale/ru';
 import { Pagination } from 'semantic-ui-react';
 import {set_Page,SetAuthorFilter,SetTitleFilter} from '../../redux/Post/actionsPost';
 import {fetchAuthors} from '../../services/author_services'
-
-
 function Posts() {
   debugger;
   const dispatch = useDispatch();
@@ -86,5 +83,5 @@ function Posts() {
   );
 }
   
-  export default Posts;
+export default Posts;
 

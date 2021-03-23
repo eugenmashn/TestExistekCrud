@@ -17,6 +17,4 @@ import { connect } from 'react-redux';
       authed:state.user.loggedIn,
     }
   };
-  
-  
-   export default connect(mapStateToProps,null) (PrivateRoute);
+export default connect(mapStateToProps,null) (PrivateRoute);

@@ -77,7 +77,6 @@ export const GetPost =(index)=> async (dispatch) =>
 export const DeletePost = (post) => async (dispatch) =>
 {
     try {
-
         const requestOptions = {
             method: 'DELETE',
             mode:'cors',
@@ -99,8 +98,6 @@ export const DeletePost = (post) => async (dispatch) =>
 export const NewPost =(post) => async (dispatch) =>
 {
     try {
-        debugger;
-    
         const requestOptions = {
             method: 'POST',
             mode:'cors',

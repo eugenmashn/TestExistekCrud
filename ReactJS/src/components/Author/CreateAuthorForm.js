@@ -13,7 +13,6 @@ function CreateAuthorForm() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const SubmitAuthorForm = (model) =>{
-        debugger;
         dispatch(CreateAuthor(model));
         handleClose();
     }

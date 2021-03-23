@@ -15,7 +15,6 @@ function Header() {
       <div className='container-icon'>
           <Image as={Link} to='/'  src={mainlogo}  circular />
       </div>
-      
       <div className='container-auth'>
       <div className='container-link'>
           <Link to="/authors"  >Сторінка авторів</Link>

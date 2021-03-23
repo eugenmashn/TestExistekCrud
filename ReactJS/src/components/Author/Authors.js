@@ -18,7 +18,6 @@ function Authors() {
     useEffect(() => {
         dispatch(fetchAllAuthors(page,ascending));
     }, []);
-    debugger;
     const authors = useSelector(state => state.author.authors);
     let ascending = useSelector(state => state.author.ascending);
     const loading = useSelector(state => state.author.loading);
@@ -26,19 +25,16 @@ function Authors() {
         dispatch(RemoveAuthor(authorId));
     }
     const onchangeSort = (asc) =>{
-        debugger;
         ascending = asc;
         dispatch(fetchAllAuthors(page,ascending));
         dispatch(ChangeSort(asc));
     }
     const onchangePage =(e, {activePage})=>{
-        debugger;
         dispatch(fetchAllAuthors(activePage,ascending));
         dispatch(setPage(activePage));
   }
   if(loading === false)
       return<div>loading...</div>
-  debugger;
   return (
     <div className="authors">
         <div>

@@ -12,7 +12,6 @@ function EditAuthorForm(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const SubmitAuthorForm = (model) =>{
-        debugger;
         dispatch(UpdateAuthor(model));
         handleClose();
     }

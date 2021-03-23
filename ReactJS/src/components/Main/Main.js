@@ -8,8 +8,6 @@ import {Route,Switch} from 'react-router-dom'
 import Authors from '../Author/Authors'
 
 function Main(props) {
-
-  debugger;
   return (
     <div className="Main">
     <Switch>
