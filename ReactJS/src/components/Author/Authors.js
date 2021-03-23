@@ -9,6 +9,8 @@ import {setPage,ChangeSort} from '../../redux/Author/authorActions';
 import {fetchAllAuthors,RemoveAuthor} from '../../services/author_services'
 import EditAuthorForm from './EditAuthorForm';
 import { Pagination } from 'semantic-ui-react';
+import Moment from 'react-moment';
+
 
 function Authors() {
     const dispatch = useDispatch();
@@ -28,7 +30,6 @@ function Authors() {
         ascending = asc;
         dispatch(fetchAllAuthors(page,ascending));
         dispatch(ChangeSort(asc));
-        
     }
     const onchangePage =(e, {activePage})=>{
         debugger;
@@ -72,7 +73,7 @@ function Authors() {
                         <Table.Cell>{author.fullName}</Table.Cell>
                         <Table.Cell>{author.email}</Table.Cell>
                         <Table.Cell>{author.address}</Table.Cell>
-                        <Table.Cell>{author.birtDay}</Table.Cell>
+                        <Table.Cell>{<Moment format="YYYY/MM/DD">{author.birtDay}</Moment>}</Table.Cell>
                         <Table.Cell>{author.age}</Table.Cell>
                         <Table.Cell>  
                             <EditAuthorForm Author={author} />
@@ -81,9 +82,7 @@ function Authors() {
                             </Button>
                         </Table.Cell>
                     </Table.Row>)})
-                
             }
-        
         </Table.Body>
 
         <Table.Footer>
@@ -98,6 +97,5 @@ function Authors() {
     </div>
   );
 }
-  
   export default Authors;
 

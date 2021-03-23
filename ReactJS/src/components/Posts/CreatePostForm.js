@@ -11,12 +11,8 @@ const CreatePost = function (props)
   const dispatch = useDispatch();
   const  SubmitPostFormCreate = (modalPost)=> {
     debugger;
-    if(modalPost.Name !== ''){
      dispatch(NewPost(modalPost));
-    }
-    else{
-      console.log('error');
-    }
+    
   }
   return <PostForm Post={null} SubmitPostForm = {SubmitPostFormCreate}/>
 }
